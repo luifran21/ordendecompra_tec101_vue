@@ -1,7 +1,7 @@
 <script setup>
 </script>
 <template>
-    <button @click="showModal = !showModal" class="bg-blue-500 rounded text-white hover:bg-blue-600"
+    <button @click="open()" class="bg-blue-500 rounded text-white hover:bg-blue-600"
         :class="{ 'w-fit': cliente, 'w-full': !cliente }">
         <li class="p-1 w-3/6" :class="{ 'flex': !cliente }">
             <svg v-if="!cliente" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -19,7 +19,8 @@
         </li>
     </button>
     <Teleport to="body">
-        <div v-if="showModal" class="fixed left-0 top-0 w-full h-full bg-black opacity-50" @click="showModal = false" style="z-index: 100;">
+        <div v-if="showModal" class="fixed left-0 top-0 w-full h-full bg-black opacity-50" @click="showModal = false"
+            style="z-index: 100;">
         </div>
         <div v-if="showModal" class="fixed left-0 top-0 bg-slate-50 rounded-xl w-fit py-4 px-6" style="
         position: fixed;
@@ -78,11 +79,7 @@ export default {
         }
     },
     mounted() {
-        if (this.cliente) {
-            this.nombre = this.cliente.nombre
-            this.apellido = this.cliente.apellido,
-                this.direccion = this.cliente.direccion
-        }
+
     },
     methods: {
         saveCliente() {
@@ -98,6 +95,9 @@ export default {
                 axios.post('/clientes', params).then(
                     (response) => {
                         toast.success(response.data.message)
+                        this.clearInputs()
+                        this.showModal = false
+                        this.$emit('saved')
                     }
                 ).catch(
                     (error) => {
@@ -123,6 +123,19 @@ export default {
                     toast.success(error.response.data.message)
                 }
             )
+        },
+        open() {
+            if (this.cliente) {
+                this.nombre = this.cliente.nombre
+                this.apellido = this.cliente.apellido
+                this.direccion = this.cliente.direccion
+            }
+            this.showModal = true;
+        },
+        clearInputs() {
+            this.nombre = ""
+            this.apellido = ""
+            this.direccion = ""
         }
     }
 }

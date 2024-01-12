@@ -3,7 +3,7 @@ import FormProducto from '../../components/productos/productoForm.vue'
 import DeleteProducto from '../../components/productos/productoDelete.vue'
 </script>
 <template>
-    <button @click="showModal = !showModal" class="bg-blue-500 rounded w-full text-white hover:bg-blue-600"
+    <button @click="open()" class="bg-blue-500 rounded w-full text-white hover:bg-blue-600"
     :class="{ 'w-fit': producto, 'w-full': !producto }"
     >
         <li class="p-1 w-3/6" :class="{'flex':!producto}">
@@ -147,6 +147,10 @@ export default {
                         this.pagination.first_url = response.data.results.first_page_url
                 }
             )
+        },
+        open(){
+            this.getProductos()
+            this.showModal = true
         }
     }
 }

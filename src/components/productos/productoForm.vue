@@ -38,7 +38,7 @@
                     </label>
                     <label class="flex flex-col text-left my-2">
                         precio $:
-                        <input type="number" step="0.01" required class="rounded border border-slate-200 p-1"
+                        <input type="number" step="0.01" min="0" required class="rounded border border-slate-200 p-1"
                             v-model="precio">
                     </label>
                     <label class="flex flex-col text-left my-2">
@@ -118,7 +118,8 @@ export default {
                 axios.post('/products', params).then(
                     (response) => {
                         toast.success(response.data.message)
-                        this.showModal = false;
+                        this.clearInputs
+                        this.showModal = false
                     }
                 ).catch(
                     (error) => {
@@ -142,9 +143,15 @@ export default {
                 }
             ).catch(
                 (error) => {
-                    toast.success(error.response.data.message)
+                    toast.error(error.response.data.message)
                 }
             )
+        },
+        clearInputs(){
+            this.nombre = ""
+            this.precio = "",
+            this.unidades_de_medida = "",
+            this.descripcion = ""
         }
     }
 }

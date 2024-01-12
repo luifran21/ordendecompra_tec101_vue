@@ -3,7 +3,7 @@ import FormCliente from '../../components/clientes/clienteForm.vue'
 import DeleteCliente from '../../components/clientes/clienteDelete.vue'
 </script>
 <template>
-    <button @click="showModal = !showModal" class="bg-blue-500 rounded w-full text-white hover:bg-blue-600">
+    <button @click="open()" class="bg-blue-500 rounded w-full text-white hover:bg-blue-600">
         <li class="p-1 w-3/6 flex">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                 class="w-6 h-6">
@@ -78,12 +78,12 @@ import DeleteCliente from '../../components/clientes/clienteDelete.vue'
                 </span>
                 <!-- Buttons -->
                 <div class="inline-flex mt-2 xs:mt-0" style="z-index:1;">
-                    <button @click=getOrdenes(pagination.prev)
+                    <button @click=getClientes(pagination.prev)
                         class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                         v-bind:class="{ 'opacity-50 pointer-events-none': pagination.current == 1 }">
                         Prev
                     </button>
-                    <button @click="getOrdenes(pagination.next)"
+                    <button @click="getClientes(pagination.next)"
                         class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                         v-bind:class="{ 'opacity-50 pointer-events-none': pagination.current == pagination.last }">
                         Next
@@ -120,8 +120,9 @@ export default {
         this.getClientes();
     },
     methods: {
-        getClientes() {
-            axios.get('/clientes').then(
+        getClientes(url=null) {
+            url==null? url='/clientes': url;
+            axios.get(url).then(
                 (response) => {
                     this.clientes = response.data.results.data,
                         this.pagination.current = response.data.results.current_page,
@@ -132,6 +133,10 @@ export default {
                         this.pagination.first_url = response.data.results.first_page_url
                 }
             )
+        },
+        open(){
+            this.getClientes();
+            this.showModal = true;
         }
     }
 }
