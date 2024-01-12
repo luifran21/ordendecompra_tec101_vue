@@ -4,15 +4,16 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <header>
+  <header class="container mx-auto p-0">
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <HelloWorld msg="Ordenes de Compras" />
 
-      <nav>
+      <nav class="">
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/orden_de_compra">Registrar orden</RouterLink>
+        <RouterLink to="/orden_de_compra/list">Consultar Ordenes</RouterLink>
       </nav>
     </div>
   </header>
@@ -39,7 +40,8 @@ nav {
 }
 
 nav a.router-link-exact-active {
-  color: var(--color-text);
+  color:black;
+  font-weight: bold;
 }
 
 nav a.router-link-exact-active:hover {
@@ -56,7 +58,7 @@ nav a:first-of-type {
   border: 0;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 720px) {
   header {
     display: flex;
     place-items: center;

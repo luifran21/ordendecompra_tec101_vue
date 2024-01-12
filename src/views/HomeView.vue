@@ -4,6 +4,8 @@ import TheWelcome from '../components/TheWelcome.vue'
 
 <template>
   <main>
-    <TheWelcome />
+    <section class="container border m-auto rounded-xl p-4">
+      <h1>Hola mundo</h1>
+    </section>
   </main>
 </template>

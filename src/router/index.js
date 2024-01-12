@@ -21,6 +21,11 @@ const router = createRouter({
       path: '/orden_de_compra',
       name:'ordenCompra',
       component: ()=>import('../views/OrdenCompra.vue')
+    },
+    {
+      path:'/orden_de_compra/list',
+      name:'ordenCompraList',
+      component: () => import('../views/OrdenCompraList.vue')
     }
 
   ]
