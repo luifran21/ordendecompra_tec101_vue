@@ -5,13 +5,13 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header class="container mx-auto p-0">
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <img alt="Vue logo" class="logo" src="@/assets/logo_blue.png" width="125" height="125" />
 
-    <div class="wrapper">
+    <div class="wrapper text-blue-600">
       <HelloWorld msg="Ordenes de Compras" />
 
       <nav class="">
-        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/">Inicio</RouterLink>
         <RouterLink to="/orden_de_compra">Registrar orden</RouterLink>
         <RouterLink to="/orden_de_compra/list">Consultar Ordenes</RouterLink>
       </nav>
