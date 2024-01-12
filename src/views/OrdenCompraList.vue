@@ -13,6 +13,9 @@
                 <input type="date" class="border rounded p-1 mx-2" v-model="filtro_fecha">
             </label>
             <button class="bg-blue-500 px-2 py-1 text-white rounded" @click="filtrarOrdenes()">Filtrar</button>
+            <button class="bg-blue-500 px-2 py-1 text-white rounded" @click="getOrdenes()">
+                Restablecer
+            </button>
         </div>
 
         <div class="relative overflow-x-auto rounded border">
