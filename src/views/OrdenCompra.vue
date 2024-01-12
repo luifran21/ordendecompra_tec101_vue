@@ -145,7 +145,7 @@ export default {
         },
         getProducts() {
             if (this.clave_busqueda_productos !== "") {
-                axios.get('/products/sugerencias?clave=' + this.clave_busqueda_productos).then(
+                axios.get('/products_sugerencias?clave=' + this.clave_busqueda_productos).then(
                     (response) => {
                         this.products = response.data.results;
                     }
